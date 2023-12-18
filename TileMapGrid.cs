@@ -577,6 +577,10 @@ public class TileMapGrid : MonoBehaviour
 
     } //END OF GenerateRoomConnections
 
+    /*
+    GeneratePath is not utilized in the final project's build but is left in the code because the final
+    paper talks about it in further detail.
+    */
     void GeneratePath()
     {
         //choose random y starting value within grid dimensions
