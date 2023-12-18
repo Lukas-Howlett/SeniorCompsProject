@@ -91,7 +91,7 @@ public class TileMapGrid : MonoBehaviour
             int randX = UnityEngine.Random.Range(0, xDimensionSize);
             int randY = UnityEngine.Random.Range(0, yDimensionSize);
 
-            if(randX < 51 && randY < 51 && !grid.HasTile(new Vector3Int(randX, randY, 0))){
+            if(randX < xDimensionSize - 49 && randY < yDimensionSize - 49 && !grid.HasTile(new Vector3Int(randX, randY, 0))){
                 for(int x = 0; x<dim1; x++){
                     for(int y = 0; y<dim2; y++){
                         grid.SetTile(new Vector3Int(x + randX, y + randY, 0), floor[2]);
@@ -207,7 +207,7 @@ public class TileMapGrid : MonoBehaviour
             List<Vector3Int> roomCords = new List<Vector3Int>();
 
             //Check to make sure there is enough space to generate 20x20 room
-            if(randX < 81 && randY < 81 && !grid.HasTile(new Vector3Int(randX, randY, 0))){
+            if(randX < xDimensionSize - 19 && randY < yDimensionSize - 19 && !grid.HasTile(new Vector3Int(randX, randY, 0))){
                 for(int x = 0; x<dim1; x++){
                     for(int y = 0; y<dim2; y++){
 
@@ -231,10 +231,13 @@ public class TileMapGrid : MonoBehaviour
                     int obstacleSpawnChance = UnityEngine.Random.Range(0, 100); // 1/100 chance to spawn an obstacle
 
                     //Check that there is enough space to spawn otherwise do nothing
+                    //Check that coords are within the boundaries of grid's xy dimension sizes
                     //Also check that obstacle is spawning in blue floor tiles
                     if(obstacleSpawnChance == 0 && IsSameTile((Tile)grid.GetTile(new Vector3Int(coord.x - 1, coord.y, 0)), 
                     (Tile)grid.GetTile(new Vector3Int(coord.x + 2, coord.y - 3, 0))) &&
-                    IsSameTile((Tile)grid.GetTile(new Vector3Int(coord.x, coord.y, 0)), floor[0])){
+                    IsSameTile((Tile)grid.GetTile(new Vector3Int(coord.x, coord.y, 0)), floor[0]) && 
+                    4 < coord.x && coord.x < xDimensionSize - 4 &&
+                    4 < coord.y && coord.y < yDimensionSize - 4){
                         if(obstacleType == 0){
                             GenerateHole(coord.x, coord.y);
                             obstacleSpawns.Add(new Vector3Int(coord.x, coord.y, 0));
@@ -255,10 +258,13 @@ public class TileMapGrid : MonoBehaviour
                     int meleeEnemySpawnChance = UnityEngine.Random.Range(0, 100); // 1/100 chance to spawn a melee enemy
 
                     //Check that there is enough space to spawn otherwise do nothing
+                    //Check that coords are within the boundaries of grid's xy dimension sizes
                     //Also check to see that the coordinate is a floor tile
                     if(meleeEnemySpawnChance == 0 && IsSameTile((Tile)grid.GetTile(new Vector3Int(coord.x, coord.y, 0)), 
                     (Tile)grid.GetTile(new Vector3Int(coord.x + 1, coord.y - 1, 0))) && 
-                    IsSameTile((Tile)grid.GetTile(new Vector3Int(coord.x, coord.y, 0)), floor[0])){
+                    IsSameTile((Tile)grid.GetTile(new Vector3Int(coord.x, coord.y, 0)), floor[0])&& 
+                    2 < coord.x && coord.x < xDimensionSize - 2 &&
+                    2 < coord.y && coord.y < yDimensionSize - 2){
                         GenerateMeleeEnemy(coord.x, coord.y);
                         meleeEnemySpawns.Add(new Vector3Int(coord.x, coord.y, 0));
                     }
