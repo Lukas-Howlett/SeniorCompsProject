@@ -9,4 +9,9 @@ The pictures above are examples of generated template levels using placeholder t
 
 # ***INSERT PICTURES OF CUSTOM SPRITE/TILE LEVELS HERE***
 
-The pictures above are examples of level generations that have swapped the placeholder sprites/tiles with custom sprites/tiles.
+The pictures above are examples of level generations that have swapped the placeholder sprites/tiles with custom sprites/tiles. 
+
+Below is a picture of the inspector-view of the generator script. Developers will be able to adjust the X and Y dimensions of their generated levels as well as the number of rooms that spawn within their map. Additionally, developers can also replace the placeholder sprites/tiles with custom sprites/tiles of their choosing using the 'Floor' and 'Enemies' arrays at the bottom.
+
+<img width="286" alt="inspector" src="https://github.com/Lukas-Howlett/SeniorCompsProject/assets/112579284/6bc66ebd-50d2-4b1e-b6c4-d5e667679f5b">
+
